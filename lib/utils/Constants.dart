@@ -28,14 +28,14 @@ TextStyle blackTextStyle = TextStyle(
 );
 
 Color hexToColor(String code) =>
-    new Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
+    Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
 
 void showNotification({required message, required error}) =>
   showSimpleNotification(
     Container(
       height: 50,
       width: 328,
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
           color: error ? hexToColor(redColor) : hexToColor(greenColor),
           borderRadius: BorderRadius.circular(4.0)
@@ -53,9 +53,7 @@ void showNotification({required message, required error}) =>
             height: 20,
             width: 20,
           ),
-          SizedBox(
-            width: 18,
-          ),
+          const SizedBox(width: 18),
           Center(
             child: Text(
               message,
@@ -73,16 +71,16 @@ void showNotification({required message, required error}) =>
     ),
     background: Colors.white,
     elevation: 0,
-    duration: Duration(seconds: 3),
+    duration: const Duration(seconds: 3),
   );
 
 void showToast({required message}) =>
   showSimpleNotification(
       Container(
-        margin: EdgeInsets.only(bottom: 40, left: 120, right: 120),
+        margin: const EdgeInsets.only(bottom: 40, left: 120, right: 120),
         height: 40,
         width: 30,
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
             color: hexToColor(paymentIconBlueBackgroundColor),
             borderRadius: BorderRadius.circular(36)
@@ -104,27 +102,11 @@ void showToast({required message}) =>
       position:  NotificationPosition.bottom
   );
 
-const privacyPolicyIntro = "Your privacy is important to us. It is Patoosh Cafe Limited’s policy to respect your privacy and comply with any applicable law and regulation regarding any personal information we may collect about you, including across our mobile app.\n\n" +
-    "Personal information is any information about you which can be used to identify you. This includes " +
-    " information about you as a person (such as name, address, and date of birth), your devices, and even information about how you use a website or online service.\n\n" +
+const privacyPolicyIntro = "Your privacy is important to us. It is Patoosh Cafe Limited’s policy to respect your privacy and comply with any applicable law and regulation regarding any personal information we may collect about you, including across our mobile app.\n\nPersonal information is any information about you which can be used to identify you. This includes  information about you as a person (such as name, address, and date of birth), your devices, and even information about how you use a website or online service.\n\nIn the event the Site contains links to third-party sites and services, please be aware that those sites and services have their own privacy policies. After following a link to any third-party content, you should read their posted privacy policy information about how they collect and use personal information. This Privacy Policy does not apply to any of your activities after you leave the Site.\n\nThis policy is effective as of Feb 1, 2022.\nLast updated: Jan 28, 2022";
 
-    "In the event the Site contains links to third-party sites and services, please be aware that those sites and services have their own privacy policies. After following a link to any third-party content, you should read their posted privacy policy information about how they " +
-    "collect and use personal information. This Privacy Policy does not apply to any of your activities after you leave the Site.\n\n" +
+const termsAndConditionsIntro = "These Terms of Service govern your use of the Patoosh’s App (referred to as the “App”).\n\nBy accessing the App, you agree to abide by these Terms of Service and to comply with all applicable laws and regulations. If you do not agree with these Terms of Service, you are prohibited from using or accessing the App.\n\nWe, Patoosh Cafe Limited, reserve the right to review and amend any of these Terms of Service at our sole discretion. Upon doing so, we will update this page. Any changes to these Terms of Service will take effect immediately from the date of publication. Your continued use of the Site following notification of any changes to these Terms of Service constitutes acceptance of those changes.";
 
-    "This policy is effective as of Feb 1, 2022.\n" +
-    "Last updated: Jan 28, 2022";
-
-const termsAndConditionsIntro = "These Terms of Service govern your use of the Patoosh’s App (referred to as the “App”).\n\n" +
-
-    "By accessing the App, you agree to abide by these Terms of Service and to comply with all applicable laws and regulations. If you do not agree with these Terms of Service, you are prohibited from using or accessing the App.\n\n" +
-
-    "We, Patoosh Cafe Limited, reserve the right to review and amend any of these Terms of Service at our sole discretion. Upon doing so, we will update this page. Any changes to these Terms of Service will take effect immediately from the date of publication. Your continued use of the Site following notification of any changes to these Terms of Service constitutes acceptance of those changes.";
-
-const informationWeCollect = "Information we collect falls into one of two categories: “voluntarily provided” information and “automatically collected” information.\n\n" +
-
-    "“Voluntarily provided” information refers to any information you knowingly and actively provide us when using the Site.\n\n" +
-
-    "“Automatically collected” information refers to any information automatically sent by your devices in the course of accessing the Site.";
+const informationWeCollect = "Information we collect falls into one of two categories: “voluntarily provided” information and “automatically collected” information.\n\n“Voluntarily provided” information refers to any information you knowingly and actively provide us when using the Site.\n\n“Automatically collected” information refers to any information automatically sent by your devices in the course of accessing the Site.";
 
 const logData = "Information we collect falls into one of two categories: “voluntarily provided” information and “automatically collected” information.";
 

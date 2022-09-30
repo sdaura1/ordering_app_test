@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../components/CartItem.dart';
+import '../components/BasketItem.dart';
 import '../functions/DatabaseHelper.dart';
 import '../models/CartModel.dart';
 import '../utils/Constants.dart';
@@ -11,15 +11,15 @@ import '../utils/SharedPref.dart';
 import 'Checkout.dart';
 import 'MainScreen.dart';
 
-class Cart extends StatefulWidget {
+class Basket extends StatefulWidget {
 
-  const Cart({Key? key}) : super(key: key);
+  const Basket({Key? key}) : super(key: key);
 
   @override
-  CartState createState() => CartState();
+  BasketState createState() => BasketState();
 }
 
-class CartState extends State<Cart> with WidgetsBindingObserver {
+class BasketState extends State<Basket> with WidgetsBindingObserver {
 
   final dbHelper = DatabaseHelper.instance;
   List<CartModel> items = [];
@@ -96,13 +96,13 @@ class CartState extends State<Cart> with WidgetsBindingObserver {
           IconButton(
             onPressed: () {
               Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-                  builder: (BuildContext context) => MainScreen(destination: 0, fromCart: false)
+                  builder: (BuildContext context) => const MainScreen(destination: 0, fromCart: false)
               ), (ModalRoute.withName(Navigator.defaultRouteName)));
             },
             iconSize: 20,
             icon: Icon(
               Icons.add,
-              color: hexToColor(blackColor),
+              color: hexToColor(orangeColor),
             ),
           ),
         ],
@@ -111,22 +111,23 @@ class CartState extends State<Cart> with WidgetsBindingObserver {
           iconSize: 20,
           icon: Icon(
             Icons.arrow_back_ios,
-            color: hexToColor(blackColor),
+            color: hexToColor(orangeColor),
           ),
         ),
         backgroundColor: Colors.transparent,
         centerTitle: true,
-        title: Text('Cart',
+        title: Text('My Basket',
           style: blackTextStyle.copyWith(
             fontSize: 16,
+            color: hexToColor(orangeColor),
           ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: items.length > 3 ? null : Container(
-        decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(4)),
-            color: Colors.black
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(4)),
+            color: hexToColor(orangeColor)
         ),
         width: double.infinity,
         margin: const EdgeInsets.only(right: 13, left: 13, bottom: 0),
@@ -135,18 +136,16 @@ class CartState extends State<Cart> with WidgetsBindingObserver {
           Navigator.push(context,
             MaterialPageRoute(
               builder: (BuildContext context) => CheckOut(
-                // isSuccessFul: false,
                 destination: 0,
                 deliveryAddress: "",
                 deliveryPhone: "",
                 additionalInfo: "",),
             ),
-          ) :
-          Future.delayed(const Duration(milliseconds: 500),() {
+          ) : Future.delayed(const Duration(milliseconds: 500),() {
             Navigator.push(context,
                 MaterialPageRoute(
                   builder: (BuildContext context) =>
-                      MainScreen(destination: 2, fromCart: true,),
+                      const MainScreen(destination: 2, fromCart: true,),
                 )
             ).then((value) {
               setState((){});
@@ -305,7 +304,7 @@ class CartState extends State<Cart> with WidgetsBindingObserver {
             iconSize: 20,
             icon: Icon(
               Icons.arrow_back_ios,
-              color: hexToColor(blackColor),
+              color: hexToColor(orangeColor),
             ),
           ),
           backgroundColor: Colors.transparent,

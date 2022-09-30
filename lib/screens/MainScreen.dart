@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ordering_app/functions/DatabaseHelper.dart';
 import 'package:ordering_app/models/CartModel.dart';
@@ -60,7 +59,7 @@ class MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
 
     final list = [
-      Home(),
+      const Home(),
       Orders(),
       Profile(fromCart: widget.fromCart)
     ];
@@ -71,10 +70,10 @@ class MainScreenState extends State<MainScreen> {
         showUnselectedLabels: true,
         backgroundColor: Colors.white,
         selectedIconTheme: IconThemeData(
-            color: hexToColor(blackColor),
+            color: hexToColor(orangeColor),
             size: 26
         ),
-        selectedItemColor: hexToColor(blackColor),
+        selectedItemColor: hexToColor(orangeColor),
         unselectedIconTheme: IconThemeData(
             color: hexToColor(dividerGreyColor),
             size: 26
@@ -91,7 +90,7 @@ class MainScreenState extends State<MainScreen> {
         selectedLabelStyle: blackTextStyle.copyWith(
             fontSize: 10,
             fontWeight: FontWeight.w400,
-            color: hexToColor(blackColor)
+            color: hexToColor(orangeColor)
         ),
         elevation: 5,
         items: [
@@ -99,9 +98,9 @@ class MainScreenState extends State<MainScreen> {
               icon: Padding(
                 padding: const EdgeInsets.only(bottom: 3.0),
                 child: Icon(
-                  FontAwesomeIcons.bell,
+                  FontAwesomeIcons.bowlFood,
                   size: 20,
-                  color: _selectedItemIndex == 0 ? hexToColor(blackColor) : hexToColor(dividerGreyColor),
+                  color: _selectedItemIndex == 0 ? hexToColor(orangeColor) : hexToColor(dividerGreyColor),
                 ),
               ),
               label: 'Menu'
@@ -110,9 +109,9 @@ class MainScreenState extends State<MainScreen> {
             icon: Padding(
               padding: const EdgeInsets.only(bottom: 3.0),
               child: Icon(
-                FontAwesomeIcons.bicycle,
+                FontAwesomeIcons.utensils,
                 size: 20,
-                color: _selectedItemIndex == 1 ? hexToColor(blackColor) : hexToColor(dividerGreyColor),
+                color: _selectedItemIndex == 1 ? hexToColor(orangeColor) : hexToColor(dividerGreyColor),
               ),
             ),
             label: 'Orders',
@@ -123,10 +122,10 @@ class MainScreenState extends State<MainScreen> {
                 child: Icon(
                   FontAwesomeIcons.solidUser,
                   size: 20,
-                  color: _selectedItemIndex == 2 ? hexToColor(blackColor) : hexToColor(dividerGreyColor),
+                  color: _selectedItemIndex == 2 ? hexToColor(orangeColor) : hexToColor(dividerGreyColor),
                 ),
               ),
-              label: 'Me',
+              label: 'Profile',
           ),
         ],
         currentIndex: _selectedItemIndex,

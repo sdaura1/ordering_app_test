@@ -9,24 +9,25 @@ import 'FoodItem.dart';
 
 class CategoryView extends StatefulWidget {
 
-  final categoryId;
-  final categoryName;
-  final isPage;
+  final String categoryId;
+  final String categoryName;
+  final bool isPage;
 
-  CategoryView({
+  const CategoryView({
+    Key? key,
     required this.categoryId,
     required this.categoryName,
     required this.isPage
-  });
+  }): super(key: key);
 
   @override
-  _CategoryViewState createState() => _CategoryViewState();
+  CategoryViewState createState() => CategoryViewState();
 }
 
-class _CategoryViewState extends State<CategoryView> {
+class CategoryViewState extends State<CategoryView> {
 
   late APiCalls aPiCalls;
-  List<FoodModel> _foodItems = [];
+  final List<FoodModel> _foodItems = [];
   String description = "";
   bool isLoading = false;
 
@@ -55,55 +56,50 @@ class _CategoryViewState extends State<CategoryView> {
 
   @override
   Widget build(BuildContext context) {
-    return !widget.isPage ? Container(
-      height: 250,
-      padding: EdgeInsets.only(bottom: 16),
-      child: !isLoading ? _foodItems.isNotEmpty ? GridView.builder(
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: MediaQuery.of(context).size.width > 600 ? 200 : 250,
-            childAspectRatio: MediaQuery.of(context).size.width > 600 ? .8 : .8,
-            mainAxisSpacing: 0.3,
-            crossAxisSpacing: MediaQuery.of(context).size.width > 600 ? 1 : 10,
+    return !widget.isPage ? Flexible(
+      child: Container(
+        padding: const EdgeInsets.only(right: 16),
+        child: !isLoading ? _foodItems.isNotEmpty ? ListView.builder(
+            physics: const ClampingScrollPhysics(),
+            shrinkWrap: false,
+            itemCount: _foodItems.length,
+            itemBuilder: (BuildContext context, int index) {
+              var foodModel = _foodItems[index];
+              return FoodItem(
+                  foodModel: foodModel,
+                  onTap: () =>
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (BuildContext context) =>
+                            DetailedView(foodModel: foodModel),
+                        ),
+                      )
+              );
+            }
+        ) : Center(
+          child: Text(
+            "Content not available",
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
+            style: blackTextStyle.copyWith(
+                fontSize: 14,
+                color: hexToColor(textGreyColor),
+                fontWeight: FontWeight.w300
+            ),
           ),
-          physics: NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: _foodItems.length,
-          itemBuilder: (BuildContext context, int index) {
-            var foodModel = _foodItems[index];
-            return FoodItem(
-                foodModel: foodModel,
-                onTap: () =>
-                    Navigator.push(context,
-                      MaterialPageRoute(builder: (BuildContext context) =>
-                          DetailedView(foodModel: foodModel),
-                      ),
-                    )
-            );
-          }
-      ) : Container(
-        margin: const EdgeInsets.only(left: 70),
-        child: Text(
-          "Content not available",
-          overflow: TextOverflow.ellipsis,
-          maxLines: 2,
-          style: blackTextStyle.copyWith(
-              fontSize: 14,
-              color: hexToColor(textGreyColor),
-              fontWeight: FontWeight.w300
-          ),
+        ) : Stack(
+            children: [
+              Positioned(
+                left: 120,
+                top: 20,
+                child: CircularProgressIndicator(
+                  strokeWidth: .5,
+                  color: hexToColor(orangeColor),
+                ),),
+            ]
         ),
-      ) : Stack(
-          children: [
-            Positioned(
-              left: 120,
-              top: 20,
-              child: CircularProgressIndicator(
-                strokeWidth: .5,
-                color: hexToColor(blackColor),
-              ),),
-          ]
       ),
     ) : Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         elevation: 0,
         leading: IconButton(
@@ -113,7 +109,7 @@ class _CategoryViewState extends State<CategoryView> {
           iconSize: 20,
           icon: Icon(
             Icons.arrow_back_ios,
-            color: hexToColor(blackColor),
+            color: hexToColor(orangeColor),
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -125,52 +121,41 @@ class _CategoryViewState extends State<CategoryView> {
       ),
       body: SafeArea(
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(top: 20, left: 16, bottom: 16),
-                  child: !isLoading ? _foodItems.isNotEmpty ? GridView.builder(
-                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: MediaQuery.of(context).size.width > 600 ? 200 : 250,
-                        childAspectRatio: MediaQuery.of(context).size.width > 600 ? .8 : .8,
-                        mainAxisSpacing: 0.3,
-                        crossAxisSpacing: MediaQuery.of(context).size.width > 600 ? 1 : 10,
-                      ),
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: _foodItems.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        var foodModel = _foodItems[index];
-                        return FoodItem(
-                            foodModel: foodModel,
-                            onTap: () =>
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) => DetailedView(foodModel: foodModel),
-                                  ),
-                                )
-                        );
-                      }
-                  ): Container(
-                    margin: const EdgeInsets.only(left: 70),
-                    child: Text(
-                      "Content not available",
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      style: blackTextStyle.copyWith(
-                          fontSize: 14,
-                          color: hexToColor(textGreyColor),
-                          fontWeight: FontWeight.w300
-                      ),
-                    ),
-                  ) : Center(
-                    child: CircularProgressIndicator(
-                      color: hexToColor(blackColor),
-                    ),
+            child: Container(
+              margin: const EdgeInsets.only(left: 16, right:16),
+              child: !isLoading ? _foodItems.isNotEmpty ? ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: _foodItems.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    var foodModel = _foodItems[index];
+                    return FoodItem(
+                        foodModel: foodModel,
+                        onTap: () =>
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) => DetailedView(foodModel: foodModel),
+                              ),
+                            )
+                    );
+                  }
+              ): Center(
+                child: Text(
+                  "Content not available",
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: blackTextStyle.copyWith(
+                      fontSize: 14,
+                      color: hexToColor(textGreyColor),
+                      fontWeight: FontWeight.w300
                   ),
                 ),
-              ],
+              ) : Center(
+                child: CircularProgressIndicator(
+                  color: hexToColor(orangeColor),
+                ),
+              ),
             ),
           )
       ),

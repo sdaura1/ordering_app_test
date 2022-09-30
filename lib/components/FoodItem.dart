@@ -1,114 +1,114 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../models/FoodModel.dart';
 import '../utils/Constants.dart';
 
 class FoodItem extends StatelessWidget {
 
-  FoodItem({
+  const FoodItem({
+    Key? key,
     required this.foodModel,
     required this.onTap
-  });
+  }) : super(key: key);
 
   final FoodModel foodModel;
-  final onTap;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     Uint8List base64 = const Base64Decoder().convert(foodModel.imageUrl);
-    return Container(
-      height: 260,
-      padding: const EdgeInsets.only(right: 16.0, left: 0.0, top: 0.0, bottom: 0.0),
+    return SizedBox(
+      height: 100,
       child: GestureDetector(
         onTap: onTap,
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.all(const Radius.circular(4.0)),
-                child: Stack(
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: BorderSide(
+              color: hexToColor(orangeColor).withOpacity(.2),
+              width: 0.3
+            )
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+                    child: Stack(
+                        children: [
+                          foodModel.imageUrl.isEmpty ? const SizedBox(
+                            height: 88,
+                            width: 88,
+                            child: Icon(FontAwesomeIcons.utensils, size: 50, color: Colors.grey)
+                          ) : Image.memory(
+                            base64,
+                            fit: BoxFit.cover,
+                            height: 100,
+                            width: 100,
+                            filterQuality: FilterQuality.high
+                          ),
+                        ]
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      foodModel.imageUrl.isEmpty ? const SizedBox(
-                        height: 128,
-                        width: 152,
-                      ) : Image.memory(
-                        base64,
-                        fit: BoxFit.cover,
-                        height: 128,
-                        width: 152,
-                        filterQuality: FilterQuality.high,
+                      Flexible(
+                        child: Text(
+                          foodModel.name, style: blackTextStyle.copyWith(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          color: Colors.black
+                        ),
+                          maxLines: 2
+                        ),
                       ),
+                      const SizedBox(height: 2),
+                      foodModel.description.isNotEmpty ?
                       Container(
-                        margin: const EdgeInsets.only(left: 12, top: 10),
-                        padding: const EdgeInsets.symmetric(horizontal: 12.67, vertical: 7.08),
+                          width: 152,
+                          margin: const EdgeInsets.only(bottom: 15),
+                          child: Text(
+                            foodModel.description,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 3,
+                            style: blackTextStyle.copyWith(
+                                fontSize: 12,
+                                color: hexToColor(textGreyColor),
+                                fontWeight: FontWeight.w400
+                            ),
+                          )
+                      ) : const Text(""),
+                      Container(
+                        margin: const EdgeInsets.only(top: 10),
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(14.0)),
                           color: Colors.white,
                         ),
                         child: Text(
-                          "N${formatter.format(foodModel.price.toInt())}",
+                            Platform.isAndroid ? "₦${formatter.format(foodModel.price.toInt())}" : "N${formatter.format(foodModel.price.toInt())}",
                           style: blackTextStyle.copyWith(
                             fontSize: 14,
+                            color: hexToColor(orangeColor)
                           ),
                         ),
                       ),
-                      Positioned(
-                          top: 74,
-                          child: Container(
-                              height: 80,
-                              width: 152,
-                              child: Container(
-                                // color: Colors.black.withOpacity(.3),
-                                decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        begin: FractionalOffset.topCenter,
-                                        end: FractionalOffset.bottomCenter,
-                                        colors: [
-                                          Colors.transparent.withOpacity(.03),
-                                          Colors.transparent.withOpacity(.5),
-                                          Colors.black.withOpacity(.5)
-                                        ]
-                                    )
-                                ),
-                              )
-                          )
-                      ),
-                    ]
-                ),
-              ),
-              SizedBox(height: 4,),
-              Container(
-                width: 138,
-                child: Text(
-                  foodModel.name, style: blackTextStyle.copyWith(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400
-                ),
-                  maxLines: 2,
-                ),
-              ),
-              const SizedBox(height: 2),
-              foodModel.description.isNotEmpty ?
-              Container(
-                  width: 152,
-                  margin: const EdgeInsets.only(bottom: 15),
-                  child: Text(
-                    foodModel.description,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: blackTextStyle.copyWith(
-                        fontSize: 10,
-                        color: hexToColor(textGreyColor),
-                        fontWeight: FontWeight.w400
-                    ),
+                    ],
                   )
-              ) : const Text(""),
-            ]
+                ]
+            ),
+          ),
         ),
       ),
     );

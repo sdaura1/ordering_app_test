@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:new_version/new_version.dart';
-import 'package:ordering_app/screens/Cart.dart';
+import 'package:ordering_app/screens/Basket.dart';
 import 'package:ordering_app/screens/MainScreen.dart';
 import 'package:ordering_app/screens/SplashScreen.dart';
 import 'package:ordering_app/utils/Constants.dart';
@@ -46,12 +46,7 @@ class _MyAppState extends State<MyApp> {
       androidId: "com.brandage.ordering_app",
     );
 
-    const simpleBehavior = true;
-
-    if(simpleBehavior){
-      debugPrint("Basic");
-      basicStatusCheck(newVersion);
-    }
+    advancedStatusCheck(newVersion);
 
     _initializeTimer();
   }
@@ -66,7 +61,7 @@ class _MyAppState extends State<MyApp> {
       newVersion.showUpdateDialog(
         context: context,
         versionStatus: status,
-        dialogTitle: 'Patoosh Update',
+        dialogTitle: 'Update Available',
         dialogText: 'Please update your app for a better experience',
       );
     }
@@ -105,7 +100,7 @@ class _MyAppState extends State<MyApp> {
       _navigatorKey.currentState?.pop(context);
       _navigatorKey.currentState?.pushReplacement(
           MaterialPageRoute(
-              builder: (context) => MainScreen(destination: 0, fromCart: false))
+              builder: (context) => const MainScreen(destination: 0, fromCart: false))
       );
     });
   }
@@ -120,8 +115,8 @@ class _MyAppState extends State<MyApp> {
             child: MaterialApp(
               initialRoute: '/',
               routes: {
-                '/cart': (context) => const Cart(),
-                '/mainscreen': (context) => MainScreen(destination: 0, fromCart: false)
+                '/basket': (context) => const Basket(),
+                '/mainscreen': (context) => const MainScreen(destination: 0, fromCart: false)
               },
               title: 'Ordering App',
               theme: ThemeData(
@@ -132,7 +127,7 @@ class _MyAppState extends State<MyApp> {
               home: Navigator(
                 initialRoute: '/',
                 key: _navigatorKey,
-                onGenerateRoute: (settings) => MaterialPageRoute(builder: (context) => SplashScreen()),
+                onGenerateRoute: (settings) => MaterialPageRoute(builder: (context) => const SplashScreen()),
               ),
             )
         )

@@ -112,7 +112,7 @@ class _CheckOutState extends State<CheckOut> with SingleTickerProviderStateMixin
           iconSize: 20,
           icon: Icon(
             Icons.arrow_back_ios,
-            color: hexToColor(blackColor),
+            color: hexToColor(orangeColor),
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -149,7 +149,7 @@ class _CheckOutState extends State<CheckOut> with SingleTickerProviderStateMixin
                             style: blackTextStyle.copyWith(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
-                                color: hexToColor(blackColor)
+                                color: hexToColor(orangeColor)
                             ),
                           ),
                         ],
@@ -176,7 +176,7 @@ class _CheckOutState extends State<CheckOut> with SingleTickerProviderStateMixin
                             style: blackTextStyle.copyWith(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
-                                color: hexToColor(blackColor)
+                                color: hexToColor(orangeColor)
                             ),
                           ),
                         ],
@@ -203,7 +203,7 @@ class _CheckOutState extends State<CheckOut> with SingleTickerProviderStateMixin
                             style: blackTextStyle.copyWith(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
-                                color: hexToColor(blackColor)
+                                color: hexToColor(orangeColor)
                             ),
                           ),
                         ],
@@ -212,7 +212,7 @@ class _CheckOutState extends State<CheckOut> with SingleTickerProviderStateMixin
                       Divider(
                         height: 1,
                         thickness: 1,
-                        color: hexToColor(blackColor),
+                        color: hexToColor(orangeColor),
                       ),
                       SizedBox(height: 5),
                       Row(
@@ -223,7 +223,7 @@ class _CheckOutState extends State<CheckOut> with SingleTickerProviderStateMixin
                             style: blackTextStyle.copyWith(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
-                                color: hexToColor(blackColor)
+                                color: hexToColor(orangeColor)
                             ),
                           ),
                         ],
@@ -232,7 +232,7 @@ class _CheckOutState extends State<CheckOut> with SingleTickerProviderStateMixin
                       currentIndex == 0 ? Divider(
                         height: 1,
                         thickness: 1,
-                        color: hexToColor(blackColor),
+                        color: hexToColor(orangeColor),
                       ) : Container(),
                       currentIndex == 0 ? SizedBox(height: 15) : Container(),
                       currentIndex == 0 ? Row(
@@ -250,7 +250,7 @@ class _CheckOutState extends State<CheckOut> with SingleTickerProviderStateMixin
                             style: blackTextStyle.copyWith(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
-                                color: hexToColor(blackColor)
+                                color: hexToColor(orangeColor)
                             ),
                           ),
                         ],
@@ -259,7 +259,7 @@ class _CheckOutState extends State<CheckOut> with SingleTickerProviderStateMixin
                       Divider(
                         height: 1,
                         thickness: 1,
-                        color: hexToColor(currentIndex == 0 ? dividerGreyColor : blackColor),
+                        color: hexToColor(currentIndex == 0 ? dividerGreyColor : orangeColor),
                       ),
                       SizedBox(height: 15),
                       Row(
@@ -277,7 +277,7 @@ class _CheckOutState extends State<CheckOut> with SingleTickerProviderStateMixin
                             style: blackTextStyle.copyWith(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
-                                color: hexToColor(blackColor)
+                                color: hexToColor(orangeColor)
                             ),
                           ),
                         ],
@@ -304,7 +304,7 @@ class _CheckOutState extends State<CheckOut> with SingleTickerProviderStateMixin
                             style: blackTextStyle.copyWith(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
-                                color: hexToColor(blackColor)
+                                color: hexToColor(orangeColor)
                             ),
                           ),
                         ],
@@ -332,7 +332,7 @@ class _CheckOutState extends State<CheckOut> with SingleTickerProviderStateMixin
                             style: blackTextStyle.copyWith(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
-                                color: hexToColor(blackColor)
+                                color: hexToColor(orangeColor)
                             ),
                           ),
                         ],
@@ -359,15 +359,15 @@ class _CheckOutState extends State<CheckOut> with SingleTickerProviderStateMixin
                       ),
                       indicatorSize: TabBarIndicatorSize.tab,
                       unselectedLabelColor: hexToColor(dividerGreyColor),
-                      labelColor: hexToColor(blackColor),
+                      labelColor: hexToColor(orangeColor),
                       labelStyle: blackTextStyle.copyWith(
                           fontWeight: FontWeight.w400,
                           fontSize: 12
                       ),
-                      indicatorColor: hexToColor(blackColor),
+                      indicatorColor: hexToColor(orangeColor),
                       onTap: (index) => setState(() => currentIndex = index),
                       indicator: MaterialIndicator(
-                          color: hexToColor(blackColor),
+                          color: hexToColor(orangeColor),
                           height: 4,
                           topLeftRadius: 10,
                           topRightRadius: 10,

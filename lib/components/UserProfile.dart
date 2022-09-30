@@ -89,7 +89,7 @@ class _UserProfileState extends State<UserProfile> {
             iconSize: 20,
             icon: Icon(
               Icons.arrow_back_ios,
-              color: hexToColor(blackColor),
+              color: hexToColor(orangeColor),
             ),
           ),
           actions: [
@@ -115,7 +115,7 @@ class _UserProfileState extends State<UserProfile> {
             style: blackTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: hexToColor(blackColor)
+                color: hexToColor(orangeColor)
             ),
           ),
         ),
@@ -153,7 +153,7 @@ class _UserProfileState extends State<UserProfile> {
                     Text(SharedPref.getName(),
                       textAlign: TextAlign.center,
                       style: blackTextStyle.copyWith(
-                          color: hexToColor(blackColor),
+                          color: hexToColor(orangeColor),
                           fontSize: 16,
                           fontWeight: FontWeight.w400
                       ),
@@ -188,7 +188,7 @@ class _UserProfileState extends State<UserProfile> {
                               onTap: () => setState(() => isChangingPassword = true),
                               child: SvgPicture.asset(
                                 'images/password.svg',
-                                color: hexToColor(blackColor),
+                                color: hexToColor(orangeColor),
                                 height: 15,
                                 width: 13.5,),
                             ),
@@ -198,7 +198,7 @@ class _UserProfileState extends State<UserProfile> {
                               child: Text('Change Password',
                                 textAlign: TextAlign.center,
                                 style: blackTextStyle.copyWith(
-                                    color: hexToColor(blackColor),
+                                    color: hexToColor(orangeColor),
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400
                                 ),),
@@ -208,7 +208,7 @@ class _UserProfileState extends State<UserProfile> {
                               onTap: () => setState(() => isChangingPassword = true),
                               child: SvgPicture.asset(
                                 'images/vector.svg',
-                                color: hexToColor(blackColor),
+                                color: hexToColor(orangeColor),
                                 height: 9.63,
                                 width: 4.81,),
                             ),
@@ -363,7 +363,7 @@ class _UserProfileState extends State<UserProfile> {
                             GestureDetector(
                               child: SvgPicture.asset(
                                   'images/logout.svg',
-                                  color: hexToColor(blackColor),
+                                  color: hexToColor(orangeColor),
                                   height: 15,
                                   width: 13.5),
                             ),
@@ -372,7 +372,7 @@ class _UserProfileState extends State<UserProfile> {
                               child: Text('Logout',
                                 textAlign: TextAlign.center,
                                 style: blackTextStyle.copyWith(
-                                    color: hexToColor(blackColor),
+                                    color: hexToColor(orangeColor),
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400
                                 ),),
@@ -381,7 +381,7 @@ class _UserProfileState extends State<UserProfile> {
                             GestureDetector(
                               child: SvgPicture.asset(
                                 'images/vector.svg',
-                                color: hexToColor(blackColor),
+                                color: hexToColor(orangeColor),
                                 height: 9.63,
                                 width: 4.81,
                               ),
@@ -420,7 +420,7 @@ class _UserProfileState extends State<UserProfile> {
             iconSize: 20,
             icon: Icon(
                 Icons.arrow_back_ios,
-                color: hexToColor(blackColor)
+                color: hexToColor(orangeColor)
             ),
           ),
           actions: [
@@ -446,7 +446,7 @@ class _UserProfileState extends State<UserProfile> {
             style: blackTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: hexToColor(blackColor)
+                color: hexToColor(orangeColor)
             ),
           ),
         ),
@@ -570,7 +570,7 @@ class _UserProfileState extends State<UserProfile> {
                       child: TextField(
                         controller: confirmNewPasswordController,
                         obscureText: _confirmNewPasswordVisible,
-                        cursorColor: hexToColor(blackColor),
+                        cursorColor: hexToColor(orangeColor),
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
                               iconSize: 10,
@@ -695,7 +695,7 @@ class _UserProfileState extends State<UserProfile> {
                       ),
                     ) : Center(
                       child: CircularProgressIndicator(
-                        color: hexToColor(blackColor),
+                        color: hexToColor(orangeColor),
                       ),
                     ),
                   ],

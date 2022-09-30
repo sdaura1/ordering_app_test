@@ -9,7 +9,7 @@ import '../utils/Constants.dart';
 
 class Intro extends StatefulWidget {
 
-  Intro();
+  const Intro({Key? key}) : super(key: key);
 
   @override
   _IntroState createState() => _IntroState();
@@ -19,7 +19,7 @@ class _IntroState extends State<Intro> with SingleTickerProviderStateMixin {
 
   var _handler;
   var currentIndex = 0;
-  var token;
+  String token = "";
   late TabController _controller;
   List<Widget> tabs = [
     IntroScreenOne(),
@@ -52,12 +52,12 @@ class _IntroState extends State<Intro> with SingleTickerProviderStateMixin {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
         height: 50,
-        decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(4)),
-            color: Colors.black
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(4)),
+            color: hexToColor(orangeColor)
         ),
         width: double.infinity,
-        margin: EdgeInsets.only(right: 16, left: 16, bottom: 0),
+        margin: const EdgeInsets.only(right: 16, left: 16, bottom: 0),
         child:  MaterialButton(
             onPressed: () {
               SharedPref.setFirstLaunch(true);
@@ -66,7 +66,7 @@ class _IntroState extends State<Intro> with SingleTickerProviderStateMixin {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => MainScreen(destination: 0, fromCart: false),
+                  builder: (BuildContext context) => const MainScreen(destination: 0, fromCart: false),
                 ),
               );
             },
@@ -85,7 +85,7 @@ class _IntroState extends State<Intro> with SingleTickerProviderStateMixin {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 height: 376,
                 child: TabBarView(
                     controller: _controller,
@@ -109,9 +109,9 @@ class _IntroState extends State<Intro> with SingleTickerProviderStateMixin {
                     ]
                 ),
               ),
-              SizedBox(height: 24,),
+              const SizedBox(height: 24,),
               CustomDotIndicator(isOne: _controller.index == 0 ? true : false),
-              Container(
+              SizedBox(
                 height: 220,
                 child: TabBarView(
                     controller: _controller,

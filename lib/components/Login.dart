@@ -80,12 +80,12 @@ class _LoginState extends State<Login> {
         appBar: AppBar(
           leading: IconButton(
             onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(
-              builder: (BuildContext context) => MainScreen(destination: 0, fromCart: false),
+              builder: (BuildContext context) => const MainScreen(destination: 0, fromCart: false),
             )),
             iconSize: 20,
             icon: Icon(
               Icons.arrow_back_ios,
-              color: hexToColor(blackColor),
+              color: hexToColor(orangeColor),
             ),
           ),
           actions: [
@@ -111,14 +111,14 @@ class _LoginState extends State<Login> {
             style: blackTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: hexToColor(blackColor)
+                color: hexToColor(orangeColor)
             ),
           ),
         ),
         body: SingleChildScrollView(
           child: Container(
             height: MediaQuery.of(context).size.height,
-            margin: EdgeInsets.only(left: 15, right: 15, top: 15),
+            margin: const EdgeInsets.only(left: 15, right: 15, top: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -126,7 +126,7 @@ class _LoginState extends State<Login> {
                 TextField(
                   controller: phoneController,
                   keyboardType: TextInputType.phone,
-                  cursorColor: hexToColor(blackColor),
+                  cursorColor: hexToColor(orangeColor),
                   decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -162,15 +162,15 @@ class _LoginState extends State<Login> {
                           fontSize: 14,
                           fontWeight: FontWeight.w400
                       ),
-                      contentPadding: EdgeInsets.all(16)
+                      contentPadding: const EdgeInsets.all(16)
                   ),
                 ),
-                SizedBox(height: 16,),
+                const SizedBox(height: 16,),
                 TextField(
                   obscureText: _passwordVisible,
                   controller: passwordController,
                   minLines: 1,
-                  cursorColor: hexToColor(blackColor),
+                  cursorColor: hexToColor(orangeColor),
                   decoration: InputDecoration(
                       suffixIcon: IconButton(
                         iconSize: 10,
@@ -214,14 +214,14 @@ class _LoginState extends State<Login> {
                           fontSize: 14,
                           fontWeight: FontWeight.w400
                       ),
-                      contentPadding: EdgeInsets.all(16)
+                      contentPadding: const EdgeInsets.all(16)
                   ),
                 ),
-                SizedBox(height: 20,),
+                const SizedBox(height: 20,),
                 !isLoading ? Container(
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        color: Colors.black
+                        borderRadius: BorderRadius.all(const Radius.circular(4)),
+                        color: hexToColor(orangeColor)
                     ),
                     width: double.infinity,
                     child: MaterialButton(
@@ -247,7 +247,7 @@ class _LoginState extends State<Login> {
                               phoneController.clear();
                               passwordController.clear();
 
-                              Future.delayed(Duration(milliseconds: 500), () {
+                              Future.delayed(const Duration(milliseconds: 500), () {
                                 if (cartCount > 0) {
                                   if (widget.fromCart) {
                                     Navigator.pop(context);
@@ -260,8 +260,7 @@ class _LoginState extends State<Login> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              MainScreen(destination: 2,
-                                                  fromCart: false),
+                                              const MainScreen(destination: 2, fromCart: false),
                                         )
                                     );
                                   }
@@ -269,7 +268,7 @@ class _LoginState extends State<Login> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (BuildContext context) => MainScreen(destination: 2, fromCart: false),
+                                        builder: (BuildContext context) => const MainScreen(destination: 2, fromCart: false),
                                       )
                                   );
                                 }
@@ -310,7 +309,7 @@ class _LoginState extends State<Login> {
                     )
                 ) : Center(
                   child: CircularProgressIndicator(
-                    color: hexToColor(blackColor),
+                    color: hexToColor(orangeColor),
                   ),
                 ),
                 SizedBox(height: 24,),
@@ -321,28 +320,26 @@ class _LoginState extends State<Login> {
                     _registerPasswordCheck = false;
                     _register = true;
                   }),
-                  child: Container(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Don’t have an account?',
-                          style: blackTextStyle.copyWith(
-                              color: hexToColor(textGreyColor),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14
-                          ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Don’t have an account?',
+                        style: blackTextStyle.copyWith(
+                            color: hexToColor(textGreyColor),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14
                         ),
-                        SizedBox(width: 3,),
-                        Text('Register',
-                          style: blackTextStyle.copyWith(
-                              color: hexToColor(blackColor),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14
-                          ),
+                      ),
+                      SizedBox(width: 3,),
+                      Text('Register',
+                        style: blackTextStyle.copyWith(
+                            color: hexToColor(orangeColor),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 )
               ],
@@ -357,160 +354,154 @@ class _LoginState extends State<Login> {
             style: blackTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: hexToColor(blackColor)
+                color: hexToColor(orangeColor)
             ),),
         ),
         body: SingleChildScrollView(
             child: Container(
                 height: MediaQuery.of(context).size.height,
-                margin: EdgeInsets.only(left: 15, right: 15, top: 15),
+                margin: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Container(
-                      child: TextField(
-                        controller: nameController,
-                        keyboardType: TextInputType.name,
-                        decoration: InputDecoration(
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: hexToColor(textGreyColor),
-                                  width: 1.0
-                              ),
-                            ),
-                            errorStyle: blackTextStyle.copyWith(
-                                fontSize: 8,
-                                height: .08,
-                                color: hexToColor(redColor)
-                            ),
-                            errorMaxLines: 1,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: hexToColor(dividerGreyColor),
-                                  width: 3.0
-                              ),
-                            ),
-                            filled: true,
-                            hintText: 'Name',
-                            errorText: _registerNameCheck ? 'Name is required' :  null,
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    width: 0,
-                                    color: hexToColor(dividerGreyColor)
-                                ),
-                                borderRadius: BorderRadius.circular(4)
-                            ),
-                            fillColor: hexToColor(dividerGreyColor),
-                            hintStyle: blackTextStyle.copyWith(
+                    TextField(
+                      controller: nameController,
+                      keyboardType: TextInputType.name,
+                      decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
                                 color: hexToColor(textGreyColor),
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400
+                                width: 1.0
                             ),
-                            contentPadding: EdgeInsets.all(16)
-                        ),
+                          ),
+                          errorStyle: blackTextStyle.copyWith(
+                              fontSize: 8,
+                              height: .08,
+                              color: hexToColor(redColor)
+                          ),
+                          errorMaxLines: 1,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: hexToColor(dividerGreyColor),
+                                width: 3.0
+                            ),
+                          ),
+                          filled: true,
+                          hintText: 'Name',
+                          errorText: _registerNameCheck ? 'Name is required' :  null,
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 0,
+                                  color: hexToColor(dividerGreyColor)
+                              ),
+                              borderRadius: BorderRadius.circular(4)
+                          ),
+                          fillColor: hexToColor(dividerGreyColor),
+                          hintStyle: blackTextStyle.copyWith(
+                              color: hexToColor(textGreyColor),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400
+                          ),
+                          contentPadding: const EdgeInsets.all(16)
                       ),
                     ),
-                    SizedBox(height: 16,),
-                    Container(
-                      child: TextField(
-                        controller: registerPhoneController,
-                        keyboardType: TextInputType.phone,
-                        decoration: InputDecoration(
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: hexToColor(textGreyColor),
-                                  width: 1.0
-                              ),
-                            ),
-                            errorStyle: blackTextStyle.copyWith(
-                                fontSize: 8,
-                                height: .08,
-                                color: hexToColor(redColor)
-                            ),
-                            errorMaxLines: 1,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: hexToColor(dividerGreyColor),
-                                  width: 3.0
-                              ),
-                            ),
-                            filled: true,
-                            hintText: 'Phone Number',
-                            errorText: _registerPhoneCheck ? 'Phone Number is required' :  null,
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    width: 0,
-                                    color: hexToColor(dividerGreyColor)
-                                ),
-                                borderRadius: BorderRadius.circular(4)
-                            ),
-                            fillColor: hexToColor(dividerGreyColor),
-                            hintStyle: blackTextStyle.copyWith(
+                    const SizedBox(height: 16,),
+                    TextField(
+                      controller: registerPhoneController,
+                      keyboardType: TextInputType.phone,
+                      decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
                                 color: hexToColor(textGreyColor),
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400
+                                width: 1.0
                             ),
-                            contentPadding: EdgeInsets.all(16)
-                        ),
+                          ),
+                          errorStyle: blackTextStyle.copyWith(
+                              fontSize: 8,
+                              height: .08,
+                              color: hexToColor(redColor)
+                          ),
+                          errorMaxLines: 1,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: hexToColor(dividerGreyColor),
+                                width: 3.0
+                            ),
+                          ),
+                          filled: true,
+                          hintText: 'Phone Number',
+                          errorText: _registerPhoneCheck ? 'Phone Number is required' :  null,
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 0,
+                                  color: hexToColor(dividerGreyColor)
+                              ),
+                              borderRadius: BorderRadius.circular(4)
+                          ),
+                          fillColor: hexToColor(dividerGreyColor),
+                          hintStyle: blackTextStyle.copyWith(
+                              color: hexToColor(textGreyColor),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400
+                          ),
+                          contentPadding: const EdgeInsets.all(16)
                       ),
                     ),
-                    SizedBox(height: 16,),
-                    Container(
-                      child: TextField(
-                        controller: registerPasswordController,
-                        obscureText: _passwordVisible,
-                        keyboardType: TextInputType.visiblePassword,
-                        minLines: 1,
-                        decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                              iconSize: 10,
-                              onPressed: () => setState(() => _passwordVisible = !_passwordVisible),
-                              icon: Icon(
-                                _passwordVisible ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash,
+                    const SizedBox(height: 16,),
+                    TextField(
+                      controller: registerPasswordController,
+                      obscureText: _passwordVisible,
+                      keyboardType: TextInputType.visiblePassword,
+                      minLines: 1,
+                      decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            iconSize: 10,
+                            onPressed: () => setState(() => _passwordVisible = !_passwordVisible),
+                            icon: Icon(
+                              _passwordVisible ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash,
+                              color: hexToColor(textGreyColor),
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
                                 color: hexToColor(textGreyColor),
-                              ),
+                                width: 1.0
                             ),
-                            focusedBorder: OutlineInputBorder(
+                          ),
+                          errorStyle: blackTextStyle.copyWith(
+                              fontSize: 8,
+                              height: .08,
+                              color: hexToColor(redColor)
+                          ),
+                          errorMaxLines: 1,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: hexToColor(dividerGreyColor),
+                                width: 3.0
+                            ),
+                          ),
+                          filled: true,
+                          hintText: 'Password',
+                          errorText: _registerPasswordCheck ? 'Password is required' : null,
+                          border: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: hexToColor(textGreyColor),
-                                  width: 1.0
+                                  width: 0,
+                                  color: hexToColor(dividerGreyColor)
                               ),
-                            ),
-                            errorStyle: blackTextStyle.copyWith(
-                                fontSize: 8,
-                                height: .08,
-                                color: hexToColor(redColor)
-                            ),
-                            errorMaxLines: 1,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: hexToColor(dividerGreyColor),
-                                  width: 3.0
-                              ),
-                            ),
-                            filled: true,
-                            hintText: 'Password',
-                            errorText: _registerPasswordCheck ? 'Password is required' : null,
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    width: 0,
-                                    color: hexToColor(dividerGreyColor)
-                                ),
-                                borderRadius: BorderRadius.circular(4)
-                            ),
-                            fillColor: hexToColor(dividerGreyColor),
-                            hintStyle: blackTextStyle.copyWith(
-                                color: hexToColor(textGreyColor),
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400
-                            ),
-                            contentPadding: EdgeInsets.all(16)
-                        ),
+                              borderRadius: BorderRadius.circular(4)
+                          ),
+                          fillColor: hexToColor(dividerGreyColor),
+                          hintStyle: blackTextStyle.copyWith(
+                              color: hexToColor(textGreyColor),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400
+                          ),
+                          contentPadding: const EdgeInsets.all(16)
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -520,10 +511,10 @@ class _LoginState extends State<Login> {
                           value: _checkBoxValue,
                           onChanged: (bool? value) => setState(() => _checkBoxValue = value!),
                           checkColor: Colors.white,
-                          fillColor: MaterialStateColor.resolveWith((states) => hexToColor(blackColor)),
+                          fillColor: MaterialStateColor.resolveWith((states) => hexToColor(orangeColor)),
                           side: BorderSide(
                             width: 1,
-                            color: hexToColor(blackColor),
+                            color: hexToColor(orangeColor),
                           ),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(3)
@@ -543,7 +534,7 @@ class _LoginState extends State<Login> {
                                   TextSpan(text: 'Privacy Policy',
                                     style: blackTextStyle.copyWith(
                                         fontFamily: fontFamily,
-                                        color: hexToColor(blackColor),
+                                        color: hexToColor(orangeColor),
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400
                                     ),
@@ -562,7 +553,7 @@ class _LoginState extends State<Login> {
                                   TextSpan(text: 'Terms and Conditions',
                                     style: blackTextStyle.copyWith(
                                         fontFamily: fontFamily,
-                                        color: hexToColor(blackColor),
+                                        color: hexToColor(orangeColor),
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400
                                     ),
@@ -575,14 +566,14 @@ class _LoginState extends State<Login> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 16,),
+                    const SizedBox(height: 16),
                     !isLoading ? Container(
                         decoration: BoxDecoration(
                             borderRadius: const BorderRadius.all(Radius.circular(4)),
                             color: registerPasswordController.text.isNotEmpty
                                 && nameController.text.isNotEmpty
                                 && registerPhoneController.text.isNotEmpty
-                                && _checkBoxValue ? Colors.black : hexToColor(dividerGreyColor)
+                                && _checkBoxValue ? hexToColor(orangeColor) : hexToColor(dividerGreyColor)
                         ),
                         width: double.infinity,
                         child: MaterialButton(
@@ -643,10 +634,10 @@ class _LoginState extends State<Login> {
                         )
                     ) : Center(
                       child: CircularProgressIndicator(
-                        color: hexToColor(blackColor),
+                        color: hexToColor(orangeColor),
                       ),
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     GestureDetector(
                       onTap: (() {
                         setState(() {
@@ -666,10 +657,10 @@ class _LoginState extends State<Login> {
                                 fontSize: 14
                             ),
                           ),
-                          SizedBox(width: 3),
+                          const SizedBox(width: 3),
                           Text('Login instead',
                             style: blackTextStyle.copyWith(
-                                color: hexToColor(blackColor),
+                                color: hexToColor(orangeColor),
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14
                             ),

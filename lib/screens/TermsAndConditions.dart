@@ -5,7 +5,7 @@ import '../utils/Constants.dart';
 
 class TermsAndConditions extends StatelessWidget {
 
-  TermsAndConditions();
+  const TermsAndConditions({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class TermsAndConditions extends StatelessWidget {
           iconSize: 20,
           icon: Icon(
             Icons.arrow_back_ios,
-            color: hexToColor(blackColor),
+            color: hexToColor(orangeColor),
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -45,7 +45,7 @@ class TermsAndConditions extends StatelessWidget {
                 ),
               ),
               LegalItem(
-                  heading: 'Patoosh Cafe Limited Terms of Service',
+                  heading: 'Food order Terms of Service',
                   content: termsAndConditionsIntro),
               LegalItem(
                   heading: 'Information We Collect',

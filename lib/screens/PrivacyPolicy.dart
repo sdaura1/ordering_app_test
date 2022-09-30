@@ -16,7 +16,7 @@ class PrivacyPolicy extends StatelessWidget {
           iconSize: 20,
           icon: Icon(
             Icons.arrow_back_ios,
-            color: hexToColor(blackColor),
+            color: hexToColor(orangeColor),
           ),
         ),
         backgroundColor: Colors.transparent,

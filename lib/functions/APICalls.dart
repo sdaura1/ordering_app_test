@@ -11,25 +11,25 @@ class APiCalls {
 
   Future<http.Response> getFoodList() async {
     var response = await http.get(Uri.parse(food_list_url))
-        .timeout(Duration(seconds: 20));
+        .timeout(const Duration(seconds: 20));
     return response;
   }
 
   Future<http.Response> getCategoryList() async {
     var response = await http.get(Uri.parse(food_category_list_url))
-        .timeout(Duration(seconds: 20));
+        .timeout(const Duration(seconds: 20));
     return response;
   }
 
   Future<http.Response> getPopularMeals() async {
     var response = await http.get(Uri.parse(popular_meals_url))
-        .timeout(Duration(seconds: 20));
+        .timeout(const Duration(seconds: 20));
     return response;
   }
 
   Future<http.Response> getFoodById(id) async {
     var response = await http.get(Uri.parse("$food_by_id_url$id"))
-        .timeout(Duration(seconds: 20));
+        .timeout(const Duration(seconds: 20));
     return response;
   }
 
@@ -40,7 +40,7 @@ class APiCalls {
           "Accept": "application/json",
           "Content-Type": "application/json"
         })
-        .timeout(Duration(seconds: 20));
+        .timeout(const Duration(seconds: 20));
     return response;
   }
 
@@ -51,7 +51,7 @@ class APiCalls {
           "Accept": "application/json",
           "Content-Type": "application/json"
         })
-        .timeout(Duration(seconds: 20));
+        .timeout(const Duration(seconds: 20));
     return response;
   }
 
@@ -64,7 +64,7 @@ class APiCalls {
         body: jsonEncode({
           "mobileNumber": username.toString(),
           "password": password.toString()
-        })).timeout(Duration(seconds: 20));
+        })).timeout(const Duration(seconds: 20));
     return response;
   }
 
@@ -77,7 +77,7 @@ class APiCalls {
         body: jsonEncode({
           "oldPassword": oldPassword.toString(),
           "newPassword": newPassword.toString()
-        })).timeout(Duration(seconds: 20));
+        })).timeout(const Duration(seconds: 20));
     return response;
   }
 
@@ -91,13 +91,13 @@ class APiCalls {
           "fullname": username.toString(),
           "mobileNumber": phone.toString(),
           "password": password.toString()
-        })).timeout(Duration(seconds: 20));
+        })).timeout(const Duration(seconds: 20));
     return response;
   }
 
   Future<http.Response> getFoodByCategory(category) async {
     var response = await http.get(Uri.parse("$food_by_category_url$category"))
-        .timeout(Duration(seconds: 20));
+        .timeout(const Duration(seconds: 20));
     return response;
   }
 
@@ -108,7 +108,7 @@ class APiCalls {
           "Accept": "application/json",
           "Content-Type": "application/json"
         })
-        .timeout(Duration(seconds: 30));
+        .timeout(const Duration(seconds: 30));
     return response;
   }
 
@@ -119,7 +119,7 @@ class APiCalls {
           "Accept": "application/json",
           "Content-Type": "application/json"
         })
-        .timeout(Duration(seconds: 30));
+        .timeout(const Duration(seconds: 30));
     return response;
   }
 
@@ -130,7 +130,7 @@ class APiCalls {
           "Accept": "application/json",
           "Content-Type": "application/json"
         })
-        .timeout(Duration(seconds: 30));
+        .timeout(const Duration(seconds: 30));
     return response;
   }
 
@@ -141,7 +141,7 @@ class APiCalls {
           "Accept": "application/json",
           "Content-Type": "application/json"
         })
-        .timeout(Duration(seconds: 20));
+        .timeout(const Duration(seconds: 20));
     return response;
   }
 
@@ -155,13 +155,13 @@ class APiCalls {
         body: jsonEncode({
           "userId": id.toString()
         })
-    ).timeout(Duration(seconds: 20));
+    ).timeout(const Duration(seconds: 20));
     return response;
   }
 
   Future<http.Response> searchFood(string) async {
     var response = await http.get(Uri.parse("$search_food_url$string"))
-        .timeout(Duration(seconds: 20));
+        .timeout(const Duration(seconds: 20));
     return response;
   }
 
@@ -172,7 +172,7 @@ class APiCalls {
           "Accept": "application/json",
           "Content-Type": "application/json"
         })
-        .timeout(Duration(seconds: 20));
+        .timeout(const Duration(seconds: 20));
     return response;
   }
 
@@ -183,7 +183,7 @@ class APiCalls {
           "Accept": "application/json",
           "Content-Type": "application/json"
         })
-        .timeout(Duration(seconds: 20));
+        .timeout(const Duration(seconds: 20));
     return response;
   }
 
@@ -203,7 +203,7 @@ class APiCalls {
           "additionalInfo": additionalInfo.toString(),
           "deliveryPhone": deliveryPhone.toString(),
           "orderItems": orderItems
-        })).timeout(Duration(seconds: 20));
+        })).timeout(const Duration(seconds: 20));
     return response;
   }
 

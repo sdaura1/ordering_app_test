@@ -3,17 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:ordering_app/functions/DatabaseHelper.dart';
 import 'package:ordering_app/models/CartModel.dart';
 import 'package:ordering_app/screens/MainScreen.dart';
+import 'package:ordering_app/utils/Constants.dart';
 import 'package:ordering_app/utils/SharedPref.dart';
 import 'Intro.dart';
 
 class SplashScreen extends StatefulWidget {
-  SplashScreen();
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  SplashScreenState createState() => SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
+class SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
 
   final dbHelper = DatabaseHelper.instance;
   late AnimationController controller;
@@ -25,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   @override
   void initState() {
     super.initState();
-    Timer.periodic(Duration(seconds: 1), (Timer timer) =>
+    Timer.periodic(const Duration(seconds: 1), (Timer timer) =>
       setState(() {
         if(percent >= 1){
           timer.cancel();
@@ -33,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => MainScreen(destination: 0, fromCart: false)
+                builder: (BuildContext context) => const MainScreen(destination: 0, fromCart: false)
               ),
             );
           }else {
@@ -53,12 +54,14 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     return Scaffold(
       body: SafeArea(
         child: Container(
-          color: Colors.black,
+          color: hexToColor(orangeColor),
           alignment: Alignment.center,
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const Spacer(),
               const Image(
                 fit: BoxFit.cover,
                 height: 46,
@@ -67,15 +70,15 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                     'images/patoosh.png'
                 ),
               ),
-              SizedBox(height: 30,),
-              Container(
+              const Spacer(),
+              SizedBox(
                 height: 4,
                 width: 184,
                 child: LinearProgressIndicator(
                   value: percent,
                   semanticsLabel: 'Linear progress indicator',
                   backgroundColor: Colors.black,
-                  valueColor: AlwaysStoppedAnimation(Colors.white),
+                  valueColor: const AlwaysStoppedAnimation(Colors.white),
                 ),
               ),
             ],

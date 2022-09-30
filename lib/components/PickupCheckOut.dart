@@ -159,7 +159,7 @@ class _PickupCheckOutState extends State<PickupCheckOut> {
           Text('Contact',
             style: blackTextStyle.copyWith(
               fontSize: 12,
-              color: hexToColor(blackColor),
+              color: hexToColor(orangeColor),
               fontWeight: FontWeight.w400,
             ),
           ),
@@ -194,7 +194,7 @@ class _PickupCheckOutState extends State<PickupCheckOut> {
             child: Container(
               margin: EdgeInsets.only(top: 150),
               child: CircularProgressIndicator(
-                color: hexToColor(blackColor),
+                color: hexToColor(orangeColor),
               ),
             ),
           ),

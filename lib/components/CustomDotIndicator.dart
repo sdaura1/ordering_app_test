@@ -17,7 +17,7 @@ class CustomDotIndicator extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-              color: hexToColor(blackColor),
+              color: hexToColor(orangeColor),
               borderRadius: BorderRadius.all(Radius.circular(4))
           ),
           height: 8.0,
@@ -47,7 +47,7 @@ class CustomDotIndicator extends StatelessWidget {
         SizedBox(width: 8,),
         Container(
           decoration: BoxDecoration(
-              color: hexToColor(blackColor),
+              color: hexToColor(orangeColor),
               borderRadius: BorderRadius.all(Radius.circular(4))
           ),
           height: 8.0,

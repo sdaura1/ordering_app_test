@@ -54,7 +54,7 @@ class _OrdersState extends State<Orders> with SingleTickerProviderStateMixin {
           iconSize: 20,
           icon: Icon(
             Icons.arrow_back_ios,
-            color: hexToColor(blackColor),
+            color: hexToColor(orangeColor),
           ),
         ),
         elevation: 0,
@@ -89,10 +89,10 @@ class _OrdersState extends State<Orders> with SingleTickerProviderStateMixin {
                         fontWeight: FontWeight.w500,
                         fontSize: 12
                     ),
-                    indicatorColor: hexToColor(blackColor),
+                    indicatorColor: hexToColor(orangeColor),
                     onTap: (index) => setState(() => currentIndex = index),
                     indicator: MaterialIndicator(
-                        color: hexToColor(blackColor),
+                        color: hexToColor(orangeColor),
                         height: 4,
                         topLeftRadius: 10,
                         topRightRadius: 10,

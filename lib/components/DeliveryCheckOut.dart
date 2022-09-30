@@ -20,7 +20,7 @@ class DeliveryCheckOut extends StatefulWidget {
   final double total;
   final int destination;
 
-  DeliveryCheckOut({
+  const DeliveryCheckOut({
     Key? key,
     required this.deliveryAddress,
     required this.deliveryPhone,
@@ -76,7 +76,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut>{
         SharedPref.clear().then((value) => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (BuildContext context) => MainScreen(destination: 2, fromCart: true)
+            builder: (BuildContext context) => const MainScreen(destination: 2, fromCart: true)
           ),
         ));
       }
@@ -124,104 +124,100 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut>{
               fontWeight: FontWeight.w400,
             ),
           ),
-          SizedBox(height: 12,),
-          Container(
-            child: TextField(
-              controller: deliveryAddressController,
-              keyboardType: TextInputType.multiline,
-              maxLines: 3,
-              minLines: 1,
-              cursorColor: hexToColor(blackColor),
-              decoration: InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: hexToColor(textGreyColor),
-                        width: 1.0
-                    ),
-                  ),
-                  errorStyle: blackTextStyle.copyWith(
-                      fontSize: 8,
-                      height: .08,
-                      color: hexToColor(redColor)
-                  ),
-                  errorMaxLines: 1,
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: hexToColor(dividerGreyColor),
-                        width: 3.0
-                    ),
-                  ),
-                  filled: true,
-                  errorText: _deliveryAddressCheck ? 'Delivery Address is required' :  null,
-                  hintText: 'Delivery Address',
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          width: 0,
-                          color: hexToColor(dividerGreyColor)
-                      ),
-                      borderRadius: BorderRadius.circular(4)
-                  ),
-                  fillColor: hexToColor(dividerGreyColor),
-                  hintStyle: blackTextStyle.copyWith(
+          const SizedBox(height: 12,),
+          TextField(
+            controller: deliveryAddressController,
+            keyboardType: TextInputType.multiline,
+            maxLines: 3,
+            minLines: 1,
+            cursorColor: hexToColor(orangeColor),
+            decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
                       color: hexToColor(textGreyColor),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400
+                      width: 1.0
                   ),
-                  contentPadding: EdgeInsets.all(16)
-              ),
-              onChanged: (String value){
+                ),
+                errorStyle: blackTextStyle.copyWith(
+                    fontSize: 8,
+                    height: .08,
+                    color: hexToColor(redColor)
+                ),
+                errorMaxLines: 1,
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: hexToColor(dividerGreyColor),
+                      width: 3.0
+                  ),
+                ),
+                filled: true,
+                errorText: _deliveryAddressCheck ? 'Delivery Address is required' :  null,
+                hintText: 'Delivery Address',
+                border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        width: 0,
+                        color: hexToColor(dividerGreyColor)
+                    ),
+                    borderRadius: BorderRadius.circular(4)
+                ),
+                fillColor: hexToColor(dividerGreyColor),
+                hintStyle: blackTextStyle.copyWith(
+                    color: hexToColor(textGreyColor),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400
+                ),
+                contentPadding: EdgeInsets.all(16)
+            ),
+            onChanged: (String value){
 
-              },
-            ),
+            },
           ),
-          SizedBox(height: 16,),
-          Container(
-            child: TextField(
-              controller: phoneController,
-              keyboardType: TextInputType.phone,
-              maxLines: 1,
-              minLines: 1,
-              cursorColor: hexToColor(blackColor),
-              decoration: InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: hexToColor(textGreyColor),
-                        width: 1.0
-                    ),
-                  ),
-                  errorStyle: blackTextStyle.copyWith(
-                      fontSize: 8,
-                      height: .08,
-                      color: hexToColor(redColor)
-                  ),
-                  errorMaxLines: 1,
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: hexToColor(dividerGreyColor),
-                        width: 3.0
-                    ),
-                  ),
-                  filled: true,
-                  errorText: _phoneCheck ? 'Phone Number is required' : null,
-                  hintText: 'Phone Number',
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          width: 0,
-                          color: hexToColor(dividerGreyColor)
-                      ),
-                      borderRadius: BorderRadius.circular(4)
-                  ),
-                  fillColor: hexToColor(dividerGreyColor),
-                  hintStyle: blackTextStyle.copyWith(
+          const SizedBox(height: 16,),
+          TextField(
+            controller: phoneController,
+            keyboardType: TextInputType.phone,
+            maxLines: 1,
+            minLines: 1,
+            cursorColor: hexToColor(orangeColor),
+            decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
                       color: hexToColor(textGreyColor),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400
+                      width: 1.0
                   ),
-                  contentPadding: EdgeInsets.all(16)
-              ),
+                ),
+                errorStyle: blackTextStyle.copyWith(
+                    fontSize: 8,
+                    height: .08,
+                    color: hexToColor(redColor)
+                ),
+                errorMaxLines: 1,
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: hexToColor(dividerGreyColor),
+                      width: 3.0
+                  ),
+                ),
+                filled: true,
+                errorText: _phoneCheck ? 'Phone Number is required' : null,
+                hintText: 'Phone Number',
+                border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        width: 0,
+                        color: hexToColor(dividerGreyColor)
+                    ),
+                    borderRadius: BorderRadius.circular(4)
+                ),
+                fillColor: hexToColor(dividerGreyColor),
+                hintStyle: blackTextStyle.copyWith(
+                    color: hexToColor(textGreyColor),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400
+                ),
+                contentPadding: const EdgeInsets.all(16)
             ),
           ),
-          SizedBox(height: 16,),
+          const SizedBox(height: 16,),
           Container(
             height: 104.0,
             decoration: BoxDecoration(
@@ -235,10 +231,10 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut>{
               keyboardType: TextInputType.multiline,
               maxLines: 6,
               minLines: 1,
-              cursorColor: hexToColor(blackColor),
+              cursorColor: hexToColor(orangeColor),
               onTap: () => setState(() => selectedEditText = true),
               decoration: InputDecoration(
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide.none
                   ),
                   errorStyle: blackTextStyle.copyWith(
@@ -247,7 +243,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut>{
                       color: hexToColor(redColor)
                   ),
                   errorMaxLines: 1,
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide.none
                   ),
                   filled: true,
@@ -259,15 +255,15 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut>{
                       fontSize: 14,
                       fontWeight: FontWeight.w400
                   ),
-                  contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 16)
+                  contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16)
               ),
             ),
           ),
-          SizedBox(height: 15,),
+          const SizedBox(height: 15,),
           !isLoading ? Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(4)),
-                color: Colors.black
+                borderRadius: const BorderRadius.all(Radius.circular(4)),
+                color: hexToColor(orangeColor)
             ),
             width: double.infinity,
             child: MaterialButton(
@@ -308,7 +304,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut>{
             ),
           ) : Center(
             child: CircularProgressIndicator(
-              color: hexToColor(blackColor),
+              color: hexToColor(orangeColor),
             ),
           ),
         ],

@@ -71,7 +71,7 @@ class _SearchItemState extends State<SearchItem> {
                 SizedBox(height: 9,),
                 Text('N${formatter.format(widget.item.price.toInt())}',
                   style: blackTextStyle.copyWith(
-                      color: hexToColor(blackColor),
+                      color: hexToColor(orangeColor),
                       fontWeight: FontWeight.w700,
                       fontSize: 14
                   ),

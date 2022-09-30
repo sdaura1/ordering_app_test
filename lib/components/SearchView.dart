@@ -90,7 +90,7 @@ class _SearchViewState extends State<SearchView> {
                         obscureText: false,
                         textAlignVertical: TextAlignVertical.center,
                         textAlign: TextAlign.start,
-                        cursorColor: hexToColor(blackColor),
+                        cursorColor: hexToColor(orangeColor),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: hexToColor(dividerGreyColor),
@@ -128,7 +128,7 @@ class _SearchViewState extends State<SearchView> {
                       },
                       child: Text('Cancel',
                         style: blackTextStyle.copyWith(
-                            color: hexToColor(blackColor),
+                            color: hexToColor(orangeColor),
                             fontWeight: FontWeight.w400,
                             fontSize: 14
                         ),
@@ -167,7 +167,7 @@ class _SearchViewState extends State<SearchView> {
                       ),
                     ) : Center(
                         child: CircularProgressIndicator(
-                          color: hexToColor(blackColor),
+                          color: hexToColor(orangeColor),
                         )
                     )
                 ),

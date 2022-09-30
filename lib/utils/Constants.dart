@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:overlay_support/overlay_support.dart';
 
-const blackColor = "#0C0C0C";
+const orangeColor = "#FF5F1F";
 const dividerGreyColor = "#E6E6E6";
 const pendingColor = "#F7CE4D";
 const pendingDeliveryColor = "#5B5B5B";
@@ -22,7 +22,7 @@ const paymentFontFamily = 'Airbnb Cereal App';
 
 TextStyle blackTextStyle = TextStyle(
     fontFamily: fontFamily,
-    color: hexToColor(blackColor),
+    color: hexToColor(orangeColor),
     fontWeight: FontWeight.w600,
     fontSize: 18
 );

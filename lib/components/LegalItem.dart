@@ -25,7 +25,7 @@ class LegalItem extends StatelessWidget {
               width: 240,
               child: Text(heading,
                 style: blackTextStyle.copyWith(
-                    color: hexToColor(blackColor),
+                    color: hexToColor(orangeColor),
                     fontSize: 18,
                     fontWeight: FontWeight.w700
                 ),

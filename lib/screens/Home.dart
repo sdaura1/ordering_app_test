@@ -1,8 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ordering_app/components/FoodItem.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ordering_app/utils/Constants.dart';
 import 'package:ordering_app/components/SearchView.dart';
 import 'package:ordering_app/functions/APICalls.dart';
@@ -10,30 +9,29 @@ import 'package:ordering_app/functions/DatabaseHelper.dart';
 import 'package:ordering_app/models/CategoryModel.dart';
 import 'package:ordering_app/models/FoodModel.dart';
 import 'package:ordering_app/components/CategoryView.dart';
-import 'package:ordering_app/screens/DetailedView.dart';
-import 'package:ordering_app/screens/Popular.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 
-import 'Cart.dart';
+import 'Basket.dart';
 
 class Home extends StatefulWidget {
 
-  Home();
+  const Home({Key? key}) : super(key: key);
 
   @override
-  _HomeState createState() => _HomeState();
+  HomeState createState() => HomeState();
 }
 
-class _HomeState extends State<Home> with SingleTickerProviderStateMixin, WidgetsBindingObserver{
+class HomeState extends State<Home> with SingleTickerProviderStateMixin,
+    WidgetsBindingObserver{
 
   bool isLoading = false;
-  var categoryId;
+  String categoryId = "";
   var currentIndex = 0;
   int cartCount = 0;
   late TabController _controller;
   late APiCalls aPiCalls;
-  List<FoodModel> _foodItems = [];
-  List<FoodModel> _popularFoodItems = [];
+  final List<FoodModel> _foodItems = [];
+  final List<FoodModel> _popularFoodItems = [];
   List<CategoryModel> categoryList = [];
   final dbHelper = DatabaseHelper.instance;
   final TextEditingController _searchController = TextEditingController();
@@ -64,45 +62,45 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin, Widget
         categoryList.clear();
         var categories = await jsonDecode(value.body)['data'];
         for (var category in categories) {
-          if(this.mounted) {
+          if(mounted) {
             setState(() => categoryList.add(CategoryModel.fromJson(category)));
           }
         }
         _controller = TabController(length: categoryList.length, vsync: this);
         _controller.addListener(() => setState(() => currentIndex = _controller.index));
       }else {
-        if(this.mounted) {
+        if(mounted) {
           setState(() => isLoading = false);
         }
       }
+
+      await getFoodByCategory();
     });
   }
 
   getPopularMeals() async {
-    if(this.mounted) {
       setState(() => isLoading = true);
-    }
     aPiCalls.getPopularMeals().then((value) async {
       if(value.statusCode == 200 && jsonDecode(value.body)['code'] == 200) {
         _popularFoodItems.clear();
         var foodItems = await jsonDecode(value.body)['data'];
         for (var foodItem in foodItems) {
           if(FoodModel.fromJson(foodItem).isActive) {
-            if (this.mounted) {
+            if (mounted) {
               setState(() =>
                   _popularFoodItems.add(FoodModel.fromJson(foodItem)));
             }
           }
         }
       }else {
-        if(this.mounted) {
+        if(mounted) {
           setState(() => isLoading = false);
         }
       }
       await getCategoryList();
       await getFoodByCategory();
 
-      if(this.mounted) {
+      if(mounted) {
         setState(() => isLoading = false);
       }
     });
@@ -113,7 +111,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin, Widget
     super.initState();
     isLoading = false;
     aPiCalls = APiCalls();
-    getPopularMeals();
+    getCategoryList();
     _query();
   }
 
@@ -122,7 +120,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin, Widget
     if(state == AppLifecycleState.resumed){
       isLoading = false;
       aPiCalls = APiCalls();
-      getPopularMeals();
+      getCategoryList();
       _query();
     }else{
       _query();
@@ -139,7 +137,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin, Widget
   Widget build(BuildContext context) {
     _query();
     return SafeArea(
-      child: !isLoading ? SingleChildScrollView(
+      child: !isLoading ? Container(
+        color: Colors.grey[200],
         child: Column(
             children: [
               Stack(
@@ -148,32 +147,31 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin, Widget
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: hexToColor(blackColor),
+                      color: hexToColor(orangeColor),
                     ),
-                    height: 215,
+                    height: 100,
                     width: double.infinity,
                   ),
                   Positioned(
-                    top: 10,
+                    top: 25,
                     right: 15,
                     child: GestureDetector(
                       onTap: () => Navigator.push(context, MaterialPageRoute(
-                          builder: (BuildContext context) => Cart()),
+                          builder: (BuildContext context) => const Basket()),
                       ),
                       child: Stack(
                           children: [
-                            SvgPicture.asset(
-                                'images/cart.svg',
-                                height: 22,
-                                width: 22,
-                                color: Colors.white,
-                                fit: BoxFit.scaleDown
+                            const Icon(
+                                FontAwesomeIcons.basketShopping,
+                                size: 20,
+                                color: Colors.white
                             ),
-                            cartCount > 0 ? Positioned(
-                                left: 16,
+                            cartCount > 0 ? const Positioned(
+                                left: 0,
+                                top: 5,
                                 child: Icon(
                                   Icons.brightness_1,
-                                  color: hexToColor(redColor),
+                                  color: Colors.black,
                                   size: 8,
                                 )
                             ) : Container(),
@@ -182,24 +180,24 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin, Widget
                     ),
                   ),
                   Positioned(
-                    left: 18,
-                    top: 73,
+                    left: 10,
+                    top: 30,
                     right: 94,
                     child: Text(
-                      "What do you want to eat today?",
+                      "Food Ordering and Delivery",
                       style: blackTextStyle.copyWith(
                           fontFamily: fontFamily,
                           fontWeight: FontWeight.w700,
-                          fontSize: 28,
+                          fontSize: 20,
                           color: Colors.white
                       ),
                     ),
                   ),
                   Positioned(
-                    top: 174,
+                    top: 70,
                     right: 15,
                     left: 12,
-                    child: Container(
+                    child: SizedBox(
                       width: 328,
                       height: 60,
                       child: Card(
@@ -219,7 +217,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin, Widget
                           obscureText: false,
                           textAlignVertical: TextAlignVertical.center,
                           textAlign: TextAlign.start,
-                          cursorColor: hexToColor(blackColor),
+                          cursorColor: hexToColor(orangeColor),
                           decoration: InputDecoration(
                             hintText: FocusNode().hasFocus ? '' : 'Search Meals',
                             enabledBorder: OutlineInputBorder(
@@ -234,17 +232,16 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin, Widget
                                   width: 0.0
                               ),
                             ),
-                            border: OutlineInputBorder(),
+                            border: const OutlineInputBorder(),
                             labelStyle: blackTextStyle.copyWith(
                                 color: FocusNode().hasFocus ? Colors.white : hexToColor(textGreyColor),
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14
                             ),
-                            prefixIcon: SvgPicture.asset(
-                                'images/search.svg',
-                                height: 20,
-                                width: 20,
-                                fit: BoxFit.scaleDown
+                            prefixIcon: const Icon(
+                                FontAwesomeIcons.magnifyingGlass,
+                                size: 20,
+                              color: Colors.black
                             ),
                           ),
                         ),
@@ -253,62 +250,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin, Widget
                   ),
                 ],
               ),
-              _popularFoodItems.length > 0 ? Container(
-                margin: EdgeInsets.only(
-                    top: 30.0,
-                    right: 19.0,
-                    left: 17.0,
-                    bottom: 15.0
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Popular Meals",
-                      style: blackTextStyle.copyWith(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext context) => PopularFood()),
-                      ),
-                      child: Text("View All".toUpperCase(),
-                        style: blackTextStyle.copyWith(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12,
-                            color: hexToColor(textGreyColor)
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ) : Center(child: CircularProgressIndicator(color: hexToColor(blackColor),),),
-              _popularFoodItems.length > 0 ? Container(
-                margin: EdgeInsets.only(
-                  top: 4,
-                  left: 16,
-                  // right: 16,
-                ),
-                height: 195,
-                child: ListView.builder(
-                  itemCount: _popularFoodItems.length,
-                  itemBuilder: (context, index) {
-                    var foodModel = _popularFoodItems[index];
-                    foodModel.description = "";
-                    return FoodItem(
-                      foodModel: foodModel,
-                      onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext context) => DetailedView(foodModel: foodModel),
-                        ),
-                      ),
-                    );
-                  },
-                  scrollDirection: Axis.horizontal,
-                ),
-              ): Center(child: CircularProgressIndicator(color: hexToColor(blackColor),),),
+              const SizedBox(height: 45),
               categoryList.isNotEmpty ? Container(
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                     left: 16.0,
                     right: 16.0,
                   ),
@@ -324,12 +268,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin, Widget
                         ),
                         indicatorSize: TabBarIndicatorSize.tab,
                         unselectedLabelColor: hexToColor(textGreyColor),
-                        labelColor: hexToColor(blackColor),
+                        labelColor: hexToColor(orangeColor),
                         labelStyle: blackTextStyle.copyWith(
                             fontWeight: FontWeight.w400,
                             fontSize: 12
                         ),
-                        indicatorColor: hexToColor(blackColor),
+                        indicatorColor: hexToColor(orangeColor),
                         onTap: (index) =>
                             setState(() {
                               currentIndex = index;
@@ -337,16 +281,16 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin, Widget
                             }),
                         controller: _controller,
                         indicator: MaterialIndicator(
-                            color: hexToColor(blackColor),
-                            height: 4,
+                            color: hexToColor(orangeColor),
+                            height: 2,
                             topLeftRadius: 10,
                             topRightRadius: 10,
                             horizontalPadding: 0,
                             tabPosition: TabPosition.bottom,
-                            strokeWidth: 6
+                            strokeWidth: 0,
                         ),
                         tabs: categoryList.map((e) =>
-                            Container(
+                            SizedBox(
                               height: 40.0,
                               child: Tab(
                                 child: Text(
@@ -357,9 +301,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin, Widget
                             )).toList()
                     ),
                   )
-              ) : Center(child: CircularProgressIndicator(color: hexToColor(blackColor),),),
+              ) : Center(child: CircularProgressIndicator(color: hexToColor(orangeColor),),),
               categoryList.isNotEmpty ? Container(
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                     top: 30.0,
                     right: 19.0,
                     left: 17.0,
@@ -371,7 +315,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin, Widget
                     Text(
                       categoryList[currentIndex].name,
                       style: blackTextStyle.copyWith(
-                          fontSize: 14
+                          fontSize: 14,
+                        color: hexToColor(orangeColor)
                       ),
                     ),
                     GestureDetector(
@@ -397,35 +342,33 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin, Widget
                 ),
               ) : Container(
                 height: 10,
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                     left: 16.0,
                     top: 24.0,
                     right: 13.0,
                     bottom: 8.0
                 ),),
-              SizedBox(height: 14,),
-              Container(
-                height: 1250,
-                margin: EdgeInsets.only(
-                  left: 17.0,
-                ),
-                padding: EdgeInsets.only(bottom: 16),
-                child: TabBarView(
-                    controller: _controller,
-                    children: categoryList.map((e) =>
-                        CategoryView(
-                            categoryId: e.id,
-                            categoryName: e.name,
-                            isPage: false
-                        )
-                    ).toList()
+              Flexible(
+                child: Container(
+                  margin: const EdgeInsets.only(left: 17.0,),
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: TabBarView(
+                      controller: _controller,
+                      children: categoryList.map((e) =>
+                          CategoryView(
+                              categoryId: e.id,
+                              categoryName: e.name,
+                              isPage: false
+                          )
+                      ).toList()
+                  ),
                 ),
               ),
             ]
         ),
       ) : Center(
         child: CircularProgressIndicator(
-          color: hexToColor(blackColor),
+          color: hexToColor(orangeColor),
         ),
       ),
     );

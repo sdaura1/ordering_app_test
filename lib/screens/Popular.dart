@@ -50,7 +50,7 @@ class _PopularFoodState extends State<PopularFood> {
           iconSize: 20,
           icon: Icon(
             Icons.arrow_back_ios,
-            color: hexToColor(blackColor),
+            color: hexToColor(orangeColor),
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -86,7 +86,7 @@ class _PopularFoodState extends State<PopularFood> {
                 );
               }) : Center(
             child: CircularProgressIndicator(
-              color: hexToColor(blackColor),
+              color: hexToColor(orangeColor),
             ),
           ),
         ),

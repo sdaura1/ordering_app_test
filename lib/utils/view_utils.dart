@@ -21,7 +21,7 @@ class ZainpayViewUtils {
             "Your account will be deleted and all transaction history will be lost, do you wish to continue?",
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: hexToColor(blackColor),
+              color: hexToColor(orangeColor),
               fontSize: 14,
               letterSpacing: 1.2,
             ),
@@ -48,7 +48,7 @@ class ZainpayViewUtils {
               Navigator.pop(context);
             },
             style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.resolveWith((states) => hexToColor(blackColor))
+                backgroundColor: MaterialStateProperty.resolveWith((states) => hexToColor(orangeColor))
             ),
             child: Text(
               "Yes, Continue",

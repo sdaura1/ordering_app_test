@@ -27,7 +27,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
                   width: 88,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: hexToColor(blackColor).withOpacity(.3),
+                    color: hexToColor(orangeColor).withOpacity(.3),
                   ),
                   child: Container(
                     height: 50.29,
@@ -35,7 +35,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
                     margin: const EdgeInsets.all(18),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: hexToColor(blackColor),
+                      color: hexToColor(orangeColor),
                     ),
                     child: SvgPicture.asset(
                         'images/single_check.svg',
@@ -61,7 +61,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
                   textAlign: TextAlign.center,
                   style: blackTextStyle.copyWith(
                       fontFamily: paymentFontFamily,
-                      color: hexToColor(blackColor),
+                      color: hexToColor(orangeColor),
                       fontSize: 20,
                       fontWeight: FontWeight.w700
                   )
@@ -84,7 +84,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
                         text: ' ${SharedPref.getReference()}.\n',
                         style: blackTextStyle.copyWith(
                             fontFamily: paymentFontFamily,
-                            color: hexToColor(blackColor),
+                            color: hexToColor(orangeColor),
                             fontSize: 18,
                             fontWeight: FontWeight.w500
                         ),
@@ -107,7 +107,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
                   margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
                   decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(4)),
-                      color: hexToColor(blackColor)
+                      color: hexToColor(orangeColor)
                   ),
                   width: 328,
                   height: 48,
@@ -141,7 +141,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
                     textAlign: TextAlign.center,
                     style: blackTextStyle.copyWith(
                         fontFamily: paymentFontFamily,
-                        color: hexToColor(blackColor).withOpacity(.7),
+                        color: hexToColor(orangeColor).withOpacity(.7),
                         fontSize: 14,
                         fontWeight: FontWeight.w400
                     )

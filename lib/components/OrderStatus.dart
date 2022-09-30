@@ -196,7 +196,7 @@ class _OrderStatusState extends State<OrderStatus> with SingleTickerProviderStat
         )
     ) : Center(
       child: CircularProgressIndicator(
-        color: hexToColor(blackColor),
+        color: hexToColor(orangeColor),
       ),
     );
   }

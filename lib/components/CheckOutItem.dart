@@ -71,7 +71,7 @@ class _CheckOutItemState extends State<CheckOutItem> {
               Text('x ${widget.item.quantity.toString()}',
                 style: blackTextStyle.copyWith(
                     fontSize: 12,
-                  color: hexToColor(blackColor),
+                  color: hexToColor(orangeColor),
                   fontWeight: FontWeight.w500
                 ),
               )

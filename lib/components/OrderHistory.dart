@@ -184,7 +184,7 @@ class _OrderHistoryState extends State<OrderHistory> with SingleTickerProviderSt
         )
     ) : Center(
       child: CircularProgressIndicator(
-        color: hexToColor(blackColor),
+        color: hexToColor(orangeColor),
       ),
     );
   }

@@ -271,7 +271,7 @@ class BasketState extends State<Basket> with WidgetsBindingObserver {
                       ),
                     ) : Navigator.push(context,
                       MaterialPageRoute(builder: (BuildContext context) =>
-                          MainScreen(
+                          const MainScreen(
                               destination: 2,
                               fromCart: true
                           ),
@@ -350,7 +350,7 @@ class BasketState extends State<Basket> with WidgetsBindingObserver {
                     )
                 ),
                 onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(
-                    builder: (BuildContext context) => MainScreen(destination: 0, fromCart: false,)
+                    builder: (BuildContext context) => const MainScreen(destination: 0, fromCart: false,)
                 ),
                 ),
               ),

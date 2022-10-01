@@ -31,10 +31,10 @@ class DeliveryCheckOut extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _DeliveryCheckOutState createState() => _DeliveryCheckOutState();
+  DeliveryCheckOutState createState() => DeliveryCheckOutState();
 }
 
-class _DeliveryCheckOutState extends State<DeliveryCheckOut>{
+class DeliveryCheckOutState extends State<DeliveryCheckOut>{
 
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
@@ -113,7 +113,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut>{
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -166,7 +166,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut>{
                     fontSize: 14,
                     fontWeight: FontWeight.w400
                 ),
-                contentPadding: EdgeInsets.all(16)
+                contentPadding: const EdgeInsets.all(16)
             ),
             onChanged: (String value){
 

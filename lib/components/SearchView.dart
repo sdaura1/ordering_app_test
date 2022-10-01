@@ -10,22 +10,23 @@ import 'SearchItem.dart';
 
 class SearchView extends StatefulWidget {
 
-  final searchParam;
+  final String searchParam;
 
-  SearchView({
+  const SearchView({
+    Key? key,
     required this.searchParam,
-  });
+  }) : super(key: key);
 
   @override
-  _SearchViewState createState() => _SearchViewState();
+  SearchViewState createState() => SearchViewState();
 }
 
-class _SearchViewState extends State<SearchView> {
+class SearchViewState extends State<SearchView> {
 
-  TextEditingController _searchTextController = TextEditingController();
+  final TextEditingController _searchTextController = TextEditingController();
   late APiCalls aPiCalls;
-  List<FoodModel> _foodItems = [];
-  var searchString;
+  final List<FoodModel> _foodItems = [];
+  String searchString = "";
   bool searching = false;
   var information = "";
 
@@ -71,12 +72,12 @@ class _SearchViewState extends State<SearchView> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 16,),
+                const SizedBox(height: 16,),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 272,
                       height: 48,
                       child: TextField(
@@ -107,7 +108,7 @@ class _SearchViewState extends State<SearchView> {
                                 width: 0.0
                             ),
                           ),
-                          border: OutlineInputBorder(),
+                          border: const OutlineInputBorder(),
                           labelStyle: blackTextStyle.copyWith(
                               color: FocusNode().hasFocus ? Colors.white : hexToColor(textGreyColor),
                               fontWeight: FontWeight.w400,
@@ -137,8 +138,8 @@ class _SearchViewState extends State<SearchView> {
                   ],
                 ),
                 Container(
-                    margin: EdgeInsets.only(top: 10, left: 0,),
-                    child: !searching ? _foodItems.length > 0 ? ListView.separated(
+                    margin: const EdgeInsets.only(top: 10, left: 0,),
+                    child: !searching ? _foodItems.isNotEmpty ? ListView.separated(
                         separatorBuilder: (context, index) => Divider(
                           endIndent: 16,
                           indent: 16,
@@ -147,7 +148,7 @@ class _SearchViewState extends State<SearchView> {
                           height: 1,
                         ),
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: _foodItems.length,
                         itemBuilder: (BuildContext context, int index) {
                           var foodModel = _foodItems[index];

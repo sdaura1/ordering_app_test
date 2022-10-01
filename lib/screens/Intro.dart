@@ -12,10 +12,10 @@ class Intro extends StatefulWidget {
   const Intro({Key? key}) : super(key: key);
 
   @override
-  _IntroState createState() => _IntroState();
+  IntroState createState() => IntroState();
 }
 
-class _IntroState extends State<Intro> with SingleTickerProviderStateMixin {
+class IntroState extends State<Intro> with SingleTickerProviderStateMixin {
 
   var _handler;
   var currentIndex = 0;

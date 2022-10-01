@@ -40,7 +40,7 @@ class SplashScreenState extends State<SplashScreen> with TickerProviderStateMixi
           }else {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (BuildContext context) => Intro()),
+              MaterialPageRoute(builder: (BuildContext context) => const Intro()),
             );
           }
         } else {
